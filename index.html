@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Python Calculator (JS Version)</title>
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+    h2 {
+      color: green;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <form id="calc-form">
+    <input type="number" id="a" placeholder="Enter first number" required>
+    <input type="number" id="b" placeholder="Enter second number" required>
+    
+    <select id="operation">
+      <option value="add">Add</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="divide">Divide</option>
+    </select>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  <h2 id="result"></h2>
+
+  <script>
+    document.getElementById('calc-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const a = parseFloat(document.getElementById('a').value);
+      const b = parseFloat(document.getElementById('b').value);
+      const op = document.getElementById('operation').value;
+
+      let result = '';
+      switch(op) {
+        case 'add':
+          result = a + b;
+          break;
+        case 'subtract':
+          result = a - b;
+          break;
+        case 'multiply':
+          result = a * b;
+          break;
+        case 'divide':
+          result = b !== 0 ? (a / b) : 'Error: Cannot divide by zero';
+          break;
+        default:
+          result = 'Invalid operation';
+      }
+
+      document.getElementById('result').innerText = `Result: ${result}`;
+    });
+  </script>
+</body>
+</html>
+
